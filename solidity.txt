@@ -1,0 +1,908 @@
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract Function {
+
+    uint luckyNumber = 7;
+
+    // function shıwNumber() public view returns(uint) {
+    //     return luckyNumber
+    // }
+
+    function setNumber(uint newNumber) public{
+        luckyNumber = newNumber;
+    }
+    function nothing() public pure returns(uint x, bool y, bool z){;
+        x = 6;
+        y = false;
+        z = true;
+    }
+
+
+}
+
+
+;
+
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract Function {
+
+   uint public x = 3;
+
+   function setx(uint newx) public {
+       x = newx;
+   }
+
+
+}
+
+;
+
+contract Function {
+
+   uint x = 3;
+
+    function setx(uint y) public view returns (uint) {
+       return x + y;
+    }
+    function add(uint a, uint b) public view returns(uint){
+        return a + b + block.timestamp;
+    }
+    function add2( uint a, uint b) public pure returns(uint){
+         return a + b;
+
+    }
+
+}
+
+;
+
+
+contract Function {
+
+   // Public, External, Internal, Private
+   // Public: Bu fonksiyonu hem dışarıdan hem de contract lar çağırabilir
+
+   function add(uint a, uint b) public pure returns(uint){
+       return a + b;
+
+   }
+    function add2(uint c, uint d) public pure returns(uint){
+        return add(c,d);
+    }
+    function publicKeyword() public pure returns(string memory){
+        return "Bu bir public fonksiyondur";
+    }
+    function callpublickeyword() public pure returns(string memory) {
+        return publicKeyword();
+    }
+
+// Private : Bu fonksiyona sadece bu contract ulaşabilir. Dışarıdan kimse bu fonksiyona ulaşamaz
+
+    function privateKeyword() private pure returns(string memory) {
+        return "Bu bir private fonksiyonudur";
+    }
+
+    function callPrivateKeyword() public pure returns(string memory){
+        return privateKeyword();
+    }
+// Bir sonraki internal:Sadece miras alan contractlar bu fonksiyonu çağırabilir. Dışarıdan kullanıcı çağıramaz.
+
+    function internalKeyword() internal pure returns(string memory) {
+        return "Bu bir internal fonksiyonudur...";
+
+    }
+    function callInternalKeyword() public pure returns(string memory){
+        return internalKeyword();
+    }
+
+     // External: Buradan ise dışarıdan kullanıcılar çağırılabilir fakat contrac içerisinde ağırılamaz.
+   
+    function ExternalKeyword() internal pure returns(string memory) {
+        return "Bu bir External fonksiyonudur...";
+
+    }
+    function callExternalKeyword() public pure returns(string memory){
+        return ExternalKeyword();
+
+
+/////////////21.11.2022 23:41 function bitti.
+
+
+
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract Constructor{
+
+    string public tokenname;
+    uint public totalSupply;
+
+    constructor(string memory name,uint number) {
+        tokenname = name;
+        totalSupply = number;
+    }
+
+    function set(uint number) public {
+        totalSupply = number;
+    }
+
+
+
+}
+
+
+;
+
+
+// constant , immutable  
+
+    uint public constant number = 10;
+
+    function set (uint num) public {
+        number = num;
+    }
+}
+
+00:37 """"""23.11.2022"""""""""""""
+loops;
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract loops{
+    uint256[15] public numbers0;
+    uint256[15] public numbers1;
+
+    function listByFor() public{
+        uint256[15] memory nums = numbers0;
+
+        for(uint256 i = 0; i < nums.length; i++){
+            // if(i==9) continue;
+            // if(i==9) break;
+            nums[i] = i;
+
+        }
+
+        numbers0 = nums;
+    }
+
+    function getArr0() public view returns(uint256[15] memory) {
+        return numbers0;
+    }
+
+    function listByWhile() public {
+        uint256 i = 0;
+        while(i < numbers1.length){
+            numbers1[i] = i;
+            i++;
+
+        }
+    }
+    
+   function getArr1() public view returns(uint256[15] memory) {
+        return numbers1;
+    }
+}
+
+;
+if else
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract IfElse {
+
+    bytes32 private hashedPassword;
+    uint256 private loginCount;
+   
+    constructor(string memory _password) {
+        hashedPassword = keccak256(abi.encode(_password));
+    }
+
+    function login(string memory _password) public view returns (bool) {
+        //    if (hashedPassword == keccak256(abi.encode(_password))) {
+        //      
+        //        //logintCount += 1;
+        //        return true;
+        //    } else {
+        //        return false;
+        //    }
+        loginCount += 1;
+        return hashedPassword == keccak256(abi.encode(_password)) ;
+    }
+
+    function loginlogin(string memory _password) public view returns (uint256) {
+        //if (hashedPassword == keccak256(abi.encode(_password))) {
+      //      return 1;
+       // } else {
+       //     return 0;
+       // }
+        return (hashedPassword == keccak256(abi.encode(_password)) ? 1 : 0) ;
+    }
+
+    function loginstatus() public view returns(uint256){
+        if(loginCount == 0){
+            return 0;
+
+        } else if(loginCount > 0 && loginCount !=1 ) {
+            return 1;
+
+        } else if(loginCount == 1 ) {
+            return 2;
+        } else {
+            return 3;
+
+        }
+    }
+
+    /*
+
+    && -> ve
+    true && false -> false
+    || -> veya
+    true || false -> true
+    >,<,>=,<=
+
+
+    */
+}
+
+    
+;
+
+
+
+mapping
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+contract Mapping{
+    
+    mapping(address => bool) public registered;
+    mapping(address => int256) public favNums;
+
+    function register(int256 _favNums) public{
+        // require(!registered[msg.sender],"kullanıcınız daha önce kayıt yaptı.");
+        require(!isRegistered(),"kullaniciniz daha once kayit yapti.");
+        registered[msg.sender] = true;
+        favNums[msg.sender] = _favNums;
+        
+    }
+
+    function isRegistered() public view returns(bool) {
+        return registered[msg.sender];
+    }
+
+    function deleteRegistered() public {
+        require(isRegistered(),"kullaniciniz kayit yapti.");
+        delete(registered[msg.sender]);
+        delete(favNums[msg.sender]);
+    }
+}
+
+contract NestedMapping {
+    mapping(address => mapping(address => uint256)) public debts ;
+    
+    function incDebt(address _borrower, uint256 _amount) public {
+        debts[msg.sender] [_borrower] += _amount; 
+    }
+
+    function decDebt(address _borrower, uint256 _amount) public {
+        require(debts[msg.sender][_borrower]  >= _amount,"not enough debt.");
+        debts[msg.sender][_borrower] -= _amount;
+    }
+
+    function getDebt (address _borrower) public view returns (uint256) {
+        return debts[msg.sender][_borrower];
+    }
+    
+
+}
+
+;
+structsEnums
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract StructEnm {
+   
+    enum Status {
+        Taken,  // 0
+        Preparing, // 1
+        Boxed,  // 2
+        Shipped  // 3
+    }
+
+    struct Order {
+        address costomer;
+        string zipCode;
+        uint256[] products;
+        Status status;
+    }
+
+    Order[] public orders;
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function createOrder(string memory _zipCode, uint256[] memory _products) external returns (uint256) {
+        require(_products.length > 0, "No products.");
+
+         Order memory order;
+         order.costomer = msg.sender;
+         order.zipCode = _zipCode;
+         order.products = _products;
+         order.status = Status.Taken;
+         orders.push(order);
+        
+        // orders.push(
+        //     order({
+        //         costomer: msg.sender,
+        //         zipCode: _zipCode,
+        //         products: _products,
+        //         status: Status.Taken
+        //     })
+        // );
+
+        //orders.push(Order(msg.sender, _zipCode, _products, Status.taken));
+        
+        return orders.length - 1; // 0 1 2 3
+
+    }
+
+    function advanceOrder(uint256 _orderId) external {
+        require(owner == msg.sender, "you are not authorized.");
+        require(_orderId < orders.length, "Not a valid order id.");
+
+        Order storage order = orders[_orderId] ;
+        require(order.status != Status.Shipped, "order is already shipped.");
+
+        if (order.status == Status.Taken) {
+            order.status = Status.Preparing;
+        } else if (order.status == Status.Preparing) {
+            order.status = Status.Boxed;
+        } else if (order.status == Status.Preparing) {
+            order.status = Status.Shipped;
+        }
+
+    }
+
+    function getOrder(uint256 _orderId) external view returns (Order memory) {
+        require(_orderId < orders. length, "not a valid order id.");
+
+        /*Order memory order = orders[_orderId];
+        return order;
+        */
+
+        return orders[_orderId];
+
+    }
+    
+    function updateZip(uint256 _orderId, string memory _zip) external {
+        require(_orderId < orders. length, "not a valid order id.");
+        Order storage order = orders [_orderId];
+        require(order.costomer == msg.sender, "you are not the owner of the order.");
+        order.zipCode = _zip;
+    }
+
+}
+
+;
+
+
+modifeir
+
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract StructEnm {
+   
+    enum Status {
+        Taken,  // 0
+        Preparing, // 1
+        Boxed,  // 2
+        Shipped  // 3
+    }
+
+    struct Order {
+        address costomer;
+        string zipCode;
+        uint256[] products;
+        Status status;
+    }
+
+    Order[] public orders;
+    address public owner;
+    uint256 public txCount;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function createOrder(string memory _zipCode, uint256[] memory _products) checkProducts(_products) incTx external returns (uint256) {
+        // require(_products.length > 0, "No products.");
+
+         Order memory order;
+         order.costomer = msg.sender;
+         order.zipCode = _zipCode;
+         order.products = _products;
+         order.status = Status.Taken;
+         orders.push(order);
+        
+        // orders.push(
+        //     order({
+        //         costomer: msg.sender,
+        //         zipCode: _zipCode,
+        //         products: _products,
+        //         status: Status.Taken
+        //     })
+        // );
+
+        //orders.push(Order(msg.sender, _zipCode, _products, Status.taken));
+        
+        return orders.length - 1; // 0 1 2 3
+
+    }
+
+    function advanceOrder(uint256 _orderid) checkOrderId(_orderid) onlyOwner external {
+        //require(owner == msg.sender, "you are not authorized.");
+        // require(_orderId < orders.length, "Not a valid order id.");
+
+        Order storage order = orders[_orderid] ;
+        require(order.status != Status.Shipped, "order is already shipped.");
+
+        if (order.status == Status.Taken) {
+            order.status = Status.Preparing;
+        } else if (order.status == Status.Preparing) {
+            order.status = Status.Boxed;
+        } else if (order.status == Status.Preparing) {
+            order.status = Status.Shipped;
+        }
+
+    }
+
+    function getOrder(uint256 _orderId) checkOrderId(_orderId) external view returns (Order memory) {
+        //require(_orderId < orders. length, "not a valid order id.");
+
+        /*Order memory order = orders[_orderId];
+        return order;
+        */
+
+        return orders[_orderId];
+
+    }
+    
+    function updateZip(uint256 _orderId, string memory _zip) checkOrderId(_orderId) onlyCustomer(_orderId) incTx external {
+        //require(_orderId < orders. length, "not a valid order id.");
+        Order storage order = orders [_orderId];
+        //require(order.costomer == msg.sender, "you are not the owner of the order.");
+        order.zipCode = _zip;
+    }
+
+    modifier checkProducts(uint256[] memory _products) {
+        require(_products.length > 0, "no products.");
+        _;
+    }
+
+    modifier checkOrderId(uint256 _orderid) {
+        require(_orderid < orders.length, "not a valid order id.");
+        _;
+    }
+
+    modifier checkOrderid(uint256 _orderid) {
+        require(_orderid < orders. length, "not a valid order id.");
+        _;
+    }
+    modifier incTx {
+        _;
+        txCount++;
+    }
+
+    modifier onlyOwner {
+        require(owner == msg.sender, "you are not authorized.");
+        _;
+    }
+
+    modifier onlyCustomer(uint256 _orderId) {
+        require (orders[_orderId].costomer == msg.sender, "you are not the owner of the order.");
+        _;
+    }
+
+}
+
+;
+
+Events
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract Events {
+   
+    enum Status {
+        Taken,  // 0
+        Preparing, // 1
+        Boxed,  // 2
+        Shipped  // 3
+    }
+
+    struct Order {
+        address costomer;
+        string zipCode;
+        uint256[] products;
+        Status status;
+    }
+
+    Order[] public orders;
+    address public owner;
+    uint256 public txCount;
+
+    event OrderCreated(uint256 _orderid, address indexed _consumer);
+    event ZipChanged(uint256 _orderId, string _zipCode);
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function createOrder(string memory _zipCode, uint256[] memory _products) checkProducts(_products) incTx external returns (uint256) {
+        // require(_products.length > 0, "No products.");
+
+         Order memory order;
+         order.costomer = msg.sender;
+         order.zipCode = _zipCode;
+         order.products = _products;
+         order.status = Status.Taken;
+         orders.push(order);
+
+         emit OrderCreated(orders.length - 1, msg.sender);
+         
+        
+        // orders.push(
+        //     order({
+        //         costomer: msg.sender,
+        //         zipCode: _zipCode,
+        //         products: _products,
+        //         status: Status.Taken
+        //     })
+        // );
+
+        //orders.push(Order(msg.sender, _zipCode, _products, Status.taken));
+        
+        return orders.length - 1; // 0 1 2 3
+
+    }
+
+    function advanceOrder(uint256 _orderid) checkOrderId(_orderid) onlyOwner external {
+        //require(owner == msg.sender, "you are not authorized.");
+        // require(_orderId < orders.length, "Not a valid order id.");
+
+        Order storage order = orders[_orderid] ;
+        require(order.status != Status.Shipped, "order is already shipped.");
+
+        if (order.status == Status.Taken) {
+            order.status = Status.Preparing;
+        } else if (order.status == Status.Preparing) {
+            order.status = Status.Boxed;
+        } else if (order.status == Status.Preparing) {
+            order.status = Status.Shipped;
+        }
+
+    }
+
+    function getOrder(uint256 _orderId) checkOrderId(_orderId) external view returns (Order memory) {
+        //require(_orderId < orders. length, "not a valid order id.");
+
+        /*Order memory order = orders[_orderId];
+        return order;
+        */
+
+        return orders[_orderId];
+
+    }
+    
+    function updateZip(uint256 _orderId, string memory _zip) checkOrderId(_orderId) onlyCustomer(_orderId) incTx external {
+        //require(_orderId < orders. length, "not a valid order id.");
+        Order storage order = orders [_orderId];
+        //require(order.costomer == msg.sender, "you are not the owner of the order.");
+        order.zipCode = _zip;
+
+        emit ZipChanged(_orderId, _zip);
+    }
+
+    modifier checkProducts(uint256[] memory _products) {
+        require(_products.length > 0, "no products.");
+        _;
+    }
+
+    modifier checkOrderId(uint256 _orderid) {
+        require(_orderid < orders.length, "not a valid order id.");
+        _;
+    }
+
+    modifier checkOrderid(uint256 _orderid) {
+        require(_orderid < orders. length, "not a valid order id.");
+        _;
+    }
+    modifier incTx {
+        _;
+        txCount++;
+    }
+
+    modifier onlyOwner {
+        require(owner == msg.sender, "you are not authorized.");
+        _;
+    }
+
+    modifier onlyCustomer(uint256 _orderId) {
+        require (orders[_orderId].costomer == msg.sender, "you are not the owner of the order.");
+        _;
+    }
+
+};
+
+
+
+
+banka contract ı
+
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+contract Bank {
+
+    mapping(address => uint ) balances;
+
+    function sendEtherToContract() payable external {
+    
+        balances[msg.sender] = msg.value;
+    }
+
+    function showBalance() external view returns(uint) {
+        return balances[msg.sender];
+    }
+
+    function withdraw(address payable to, uint amount) external returns(bool) {
+        //require(balances[msg.sender] >= amount,"yetersiz bakiye");
+        bool ok = to.send(amount);
+        balances[msg.sender] -= amount;
+        return ok;
+    }
+
+    // Transfer()
+    // Revert
+
+    // Send()
+    //true, false
+
+    // call()
+
+}
+
+
+receive Transact
+
+uint public receiveCount = 0;
+    receive() external payable {
+        receiveCount +=1;
+
+fallback
+
+fallback() external payable{
+        fallbackCount += 1;
+;
+
+
+errors
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+contract Errors {
+    uint256 public totalBalance;
+    mapping(address => uint256) public userBalances;
+
+    error ExceedingAmount(address user, uint256 exceedingAmount);
+    error Deny(string reason);
+
+    receive() external payable {
+        revert Deny("no direct payments.");
+
+    }
+
+    fallback() external payable {
+        revert Deny("no direct payments.");
+
+    }
+
+
+
+    function pay() noZero(msg.value) external payable {
+        require(msg.value == 1 ether, "only payments in 1 ether");
+
+        totalBalance += 1 ether; // 1e18
+        userBalances[msg.sender] += 1 ether; // 100..0000
+
+    }
+
+    function withdraw(uint256 _amount)  noZero(_amount) external {
+        uint256 initalBalance = totalBalance;
+        //require(userBalances[msg.sender] >= _amount, "Insufficient balance.");
+
+        if(userBalances[msg.sender] < _amount) {
+            //revert("Insufficient balance.");
+            revert ExceedingAmount(msg.sender, _amount - userBalances[msg.sender]);
+        }
+
+        totalBalance -= _amount;
+        userBalances[msg.sender] -= _amount;
+        // address => address payable
+        payable(msg.sender).transfer(_amount);
+
+        assert(totalBalance < initalBalance);
+
+    }
+
+    modifier noZero(uint256 _amount) {
+        require(_amount != 0);
+        _;
+    }
+}
+
+
+libraries
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+library Math {
+    //kullanılabilirliği
+
+    function plus(uint x, uint y) public pure returns(uint) {
+        return x + y;
+    }
+
+    function minus(uint x, uint y) public pure returns(uint) {
+        return x - y;
+
+    }
+
+    function multi(uint x, uint y) public pure returns(uint) {
+        return x * y;
+    }
+
+    function divide(uint x, uint y) public pure returns(uint) {
+        require(y != 0, "bu sayisi begenmedim");
+        return x / y;
+    }
+
+    function min(uint x, uint y) public pure returns(uint) {
+        if( x <= y){
+            return x;
+        }else {
+            return y;
+        }
+    }
+
+    function max(uint x, uint y) public pure returns(uint) {
+        if( x >= y){
+            return x;
+        }else {
+            return y;
+        }
+    }
+}
+
+contract Library {
+    function trial1(uint x, uint y) public pure returns(uint) {
+        return Math.plus(x,y);
+    }
+
+    function trial2(uint x, uint y) public pure returns(uint) {
+        return Math.minus(x,y);
+    }
+
+     function trial3(uint x, uint y) public pure returns(uint) {
+        return Math.multi(x,y);
+    }
+
+     function trial4(uint x, uint y) public pure returns(uint) {
+        return Math.divide(x,y);
+    }
+
+     function trial5(uint x, uint y) public pure returns(uint) {
+        return Math.max(x,y);
+    }
+
+
+    
+
+
+}
+            
+
+// SPDX-License-Identifier: Unlicensed
+pragma solidity ^0.8.0;
+
+library Math {
+    //kullanılabilirliği
+
+    function plus(uint x, uint y) public pure returns(uint) {
+        return x + y;
+    }
+
+    function minus(uint x, uint y) public pure returns(uint) {
+        return x - y;
+
+    }
+
+    function multi(uint x, uint y) public pure returns(uint) {
+        return x * y;
+    }
+
+    function divide(uint x, uint y) public pure returns(uint) {
+        require(y != 0, "bu sayisi begenmedim");
+        return x / y;
+    }
+
+    function min(uint x, uint y) public pure returns(uint) {
+        if( x <= y){
+            return x;
+        }else {
+            return y;
+        }
+    }
+
+    function max(uint x, uint y) public pure returns(uint) {
+        if( x >= y){
+            return x;
+        }else {
+            return y;
+        }
+    }
+}
+
+library Search {
+    function indexof(uint[] memory list, uint data) public pure returns(uint) {
+        for (uint i = 0; i < list.length; i++) {
+            if (list[i] == data ) {
+                return i;
+            }
+        }
+        return list.length;
+    }
+}
+
+contract Library {
+
+    using Math for uint;
+    using Search for uint[];
+
+    function trial1(uint[] memory x, uint y) public pure returns(uint) {
+        return x.indexof(y); //Search.indexof(x,y); //Math.plus(x,y);
+    }
+
+
+}
+
+
+   ;;
+
+
+
+
+    
+
+
+
+
+
+
+
+
